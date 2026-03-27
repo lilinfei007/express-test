@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input id="input" /><button id="btn">提交</button>
+    <script src="https://img0.qll-times.com/combine?axios/0.18.0/axios.min.js" crossorigin="anonymous"></script>
+  <script>
+    let input = document.getElementById('input');
+    let btn = document.getElementById('btn');
+    btn.onclick = function async () {
+      // console.log(input.value);
+      axios.post("http://localhost:3000/post",{
+        name: input.value
+      }).then(response => {
+        let { data:res } = response;
+        if(res.status == 0){
+          alert(res.msg.name);
+        }else{
+          alert(`错误：${res.msg}`)
+        }
+        console.log(res);
+        
+      })
+    }
+  </script>
+</body>
+</html>
